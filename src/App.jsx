@@ -26,7 +26,7 @@ function App() {
 
           //sign cart and receive data to populate the form
           const wayforpayData = (await axios.post('http://localhost:5000/checkout/create-online-payment-order', {
-            email: 'vadimbaranivsky83@gmail.com',
+            email: 'vadimbaranivsky77@gmail.com',
             phone: '380635704828',
             name: 'Баранівський Вадим Миколайович',
             "destination": {
@@ -39,7 +39,11 @@ function App() {
               "RecipientFlat": "",
               
             },
-            products: [{id: '63f3206b6937e3705097c2bc', count: 2}, {id: '63f31fb46937e3705097c2b8', count: 3}]
+            products: [
+            {id: '63f34ffe0fe30c9774da5130', count: 1, color: 'red', size: 's'}, 
+            {id: '63f34ffe0fe30c9774da5130', count: 2, color: 'black', size: 'm'},
+            {id: '63f34ffe0fe30c9774da5134', count: 1, color: 'red', size: 'm'}
+          ]
           }, {withCredentials: true})).data
           const {
             merchantSignature, 
@@ -79,7 +83,7 @@ function App() {
 
             const nameInput = document.createElement('input')
             nameInput.name = 'productName[]'
-            nameInput.value = item.name
+            nameInput.value = item.uniqueNameIntheCart
             nameInput.type = 'hidden'
             formRef.current.append(nameInput)
 
@@ -107,7 +111,7 @@ function App() {
 
           // formRef.current.submit()
 
-
+          
           // formRef.current['productName[]'].value = cart.map(item => item.name)
           // formRef.current['productCount[]'].value = cart.map(item => item.count)
           // formRef.current['productPrice[]'].value = cart.map(item => item.price)
