@@ -22,7 +22,7 @@ function App() {
       <button onClick={
         async () => {
           //login
-          const login = await axios.post('http://localhost:5000/auth/login', {"password":"admin", "email": "vadimbaranivsky83@gmail.com"}, {withCredentials: true})
+          // const login = await axios.post('http://localhost:5000/auth/login', {"password":"admin", "email": "vadimbaranivsky83@gmail.com"}, {withCredentials: true})
 
           //sign cart and receive data to populate the form
           const wayforpayData = (await axios.post('http://localhost:5000/checkout/create-online-payment-order', {
@@ -36,8 +36,10 @@ function App() {
               "RecipientAreaRegions": "",
               "RecipientAddressName": "1", 
               "RecipientHouse": "",
-              "RecipientFlat": ""
-            }
+              "RecipientFlat": "",
+              
+            },
+            products: [{id: '63f3206b6937e3705097c2bc', count: 2}, {id: '63f31fb46937e3705097c2b8', count: 3}]
           }, {withCredentials: true})).data
           const {
             merchantSignature, 
@@ -51,6 +53,9 @@ function App() {
             paymentSystems,
             products
           } = wayforpayData
+
+          console.log(wayforpayData)
+          
 
           // populate the form
           for (let prop in wayforpayData) {
@@ -106,6 +111,7 @@ function App() {
           // formRef.current['productName[]'].value = cart.map(item => item.name)
           // formRef.current['productCount[]'].value = cart.map(item => item.count)
           // formRef.current['productPrice[]'].value = cart.map(item => item.price)
+          
           formRef.current.submit()
         }
       }>checkout</button>
