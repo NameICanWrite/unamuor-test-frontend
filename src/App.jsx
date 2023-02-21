@@ -6,7 +6,7 @@ import { createRef, useEffect, useState } from 'react';
 function App() {
 
   const formRef = createRef()
-
+  
   // useEffect(() => {
   //   (async () => {
   //     const res = await axios.post('http://localhost:5000/checkout/checkout-cart-wayforpay', {}, {withCredentials: true})
@@ -37,6 +37,7 @@ function App() {
               "RecipientAddressName": "1", 
               "RecipientHouse": "",
               "RecipientFlat": "",
+              "ServiceType": "DoorsWarehouse" 
               
             },
             products: [
